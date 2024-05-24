@@ -16,10 +16,11 @@ public class ChecadaController {
     @Autowired
     private ChecadaService checadaService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
-    public ResponseEntity<Checada> createChecada(@RequestBody Checada checada) {
-        Checada newChecada = checadaService.saveChecada(checada);
-        return ResponseEntity.ok(newChecada);
+    public ResponseEntity<List<Checada>> createChecada(@RequestBody List<Checada> checadas) {
+        List<Checada> newChecadas = checadaService.saveChecadas(checadas);
+        return ResponseEntity.ok(newChecadas);
     }
 
     @GetMapping

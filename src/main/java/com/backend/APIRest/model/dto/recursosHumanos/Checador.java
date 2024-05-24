@@ -9,6 +9,8 @@ public class Checador {
     private String col2;
     private String col3;
     private String col4;
+    private String col5;
+    private String col6;
 
     // Getters y Setters
 
@@ -42,5 +44,21 @@ public class Checador {
 
     public void setCol4(String col4) {
         this.col4 = col4;
+    }
+
+    public String getCol5() {
+        return col5;
+    }
+
+    public void setCol5(String col5) {
+        this.col5 = col5;
+    }
+
+    public String getCol6() {
+        return col6;
+    }
+
+    public void setCol6(String col6) {
+        this.col6 = col6;
     }
 }

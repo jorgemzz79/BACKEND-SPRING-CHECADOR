@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ChecadaService {
-    Checada saveChecada(Checada checada);
+    List<Checada> saveChecadas(List<Checada> checadas);
     List<Checada> getAllChecadas();
     Optional<Checada> getChecadaById(Integer id);
     Checada updateChecada(Integer id, Checada checada);

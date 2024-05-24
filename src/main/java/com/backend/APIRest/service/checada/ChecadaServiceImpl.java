@@ -16,8 +16,8 @@ public class ChecadaServiceImpl implements ChecadaService {
     private ChecadaRepository checadaRepository;
 
     @Override
-    public Checada saveChecada(Checada checada) {
-        return checadaRepository.save(checada);
+    public List<Checada> saveChecadas(List<Checada> checadas) {
+        return checadaRepository.saveAll(checadas);
     }
 
     @Override
