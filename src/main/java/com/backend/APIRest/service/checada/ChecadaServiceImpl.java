@@ -3,6 +3,8 @@ package com.backend.APIRest.service.checada;
 import com.backend.APIRest.model.entidades.checador.Checada;
 import com.backend.APIRest.repository.checador.ChecadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,11 @@ public class ChecadaServiceImpl implements ChecadaService {
     @Override
     public void deleteChecada(Integer id) {
         checadaRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Checada> getAllChecadas(Pageable pageable) {
+        return checadaRepository.findAll(pageable);
     }
 
 }

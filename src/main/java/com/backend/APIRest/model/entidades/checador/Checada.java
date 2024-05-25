@@ -15,7 +15,6 @@ import java.io.Serializable;
 @Table(name = "checadas")
 public class Checada
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

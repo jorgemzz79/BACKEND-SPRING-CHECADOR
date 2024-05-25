@@ -21,6 +21,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 @Configuration
 @EnableWebSecurity()
 @EnableGlobalMethodSecurity ( prePostEnabled = true, securedEnabled = true )
@@ -31,6 +32,9 @@ public class SecurityConfig
             "/usuarios/login",
             "/checadas",
             "/checadas/",
+            "/checadas/paged",
+            "/checadas/paged/",
+            "/checadas/**",
             "/api/Pago/",
             "/api/reciboPDF/",
             "/api/fechaVencimiento/",

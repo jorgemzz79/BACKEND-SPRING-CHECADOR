@@ -3,6 +3,8 @@ package com.backend.APIRest.controlller;
 import com.backend.APIRest.model.entidades.checador.Checada;
 import com.backend.APIRest.service.checada.ChecadaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,5 +47,12 @@ public class ChecadaController {
     public ResponseEntity<Void> deleteChecada(@PathVariable Integer id) {
         checadaService.deleteChecada(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Nuevo endpoint para paginación
+    @GetMapping("/paged")
+    public ResponseEntity<Page<Checada>> getAllChecadas(Pageable pageable) {
+        Page<Checada> checadas = checadaService.getAllChecadas(pageable);
+        return ResponseEntity.ok(checadas);
     }
 }
