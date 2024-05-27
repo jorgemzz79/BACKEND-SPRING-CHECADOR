@@ -52,7 +52,13 @@ public class ChecadaController {
     // Nuevo endpoint para paginación
     @GetMapping("/paged")
     public ResponseEntity<Page<Checada>> getAllChecadas(Pageable pageable) {
-        Page<Checada> checadas = checadaService.getAllChecadas(pageable);
-        return ResponseEntity.ok(checadas);
+     try {
+         Page<Checada> checadas = checadaService.getAllChecadas(pageable);
+         return ResponseEntity.ok(checadas);
+     } catch(Exception e){
+         System.out.println(e.getMessage());
+            return null;
+     }
+
     }
 }
