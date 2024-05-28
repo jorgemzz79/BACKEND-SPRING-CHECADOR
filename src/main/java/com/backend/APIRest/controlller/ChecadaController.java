@@ -49,6 +49,7 @@ public class ChecadaController {
         return ResponseEntity.noContent().build();
     }
     // Nuevo endpoint para paginación
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/paginated")
     public ResponseEntity<Page<Checada>> getChecadasPaginated(Pageable pageable) {
         Page<Checada> checadas = checadaService.getChecadasPaginated(pageable);
