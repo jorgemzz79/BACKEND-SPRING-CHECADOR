@@ -13,6 +13,8 @@ public interface ChecadaService {
     Optional<Checada> getChecadaById(Integer id);
     Checada updateChecada(Integer id, Checada checada);
     void deleteChecada(Integer id);
-    Page<Checada> getAllChecadas(Pageable pageable); // Nuevo método para paginación
 
+    Page<Checada> getChecadasPaginated(Pageable pageable);
+    // Método para paginación
+   
 }

@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface ChecadaRepository extends JpaRepository<Checada, Integer> {
-    Page<Checada> findAll(Pageable pageable);
 
 }

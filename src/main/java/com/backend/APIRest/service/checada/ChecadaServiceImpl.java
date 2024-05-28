@@ -46,9 +46,8 @@ public class ChecadaServiceImpl implements ChecadaService {
         checadaRepository.deleteById(id);
     }
 
-    @Override
-    public Page<Checada> getAllChecadas(Pageable pageable) {
+
+    public Page<Checada> getChecadasPaginated(Pageable pageable) {
         return checadaRepository.findAll(pageable);
     }
-
 }
