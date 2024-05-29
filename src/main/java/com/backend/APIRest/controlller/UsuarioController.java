@@ -29,6 +29,7 @@ public class UsuarioController {
         return new Respuesta<> (HttpStatus.OK,new LoginResponseDto(usuario,jwtAuthenticationDto),"Acceso Correcto","OK");
     }
 
+
     @PreAuthorize("hasRole('NUEVO USUARIO')")
     @PostMapping("/nuevo")
     public Respuesta<DatosDeUsuarioResponseDto> nuevoUsuario(@Valid @RequestBody NuevoUsuarioRequestDto nuevoUsuarioRequestDto) {

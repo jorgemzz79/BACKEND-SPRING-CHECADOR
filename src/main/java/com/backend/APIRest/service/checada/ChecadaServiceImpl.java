@@ -8,12 +8,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
 public class ChecadaServiceImpl implements ChecadaService {
+    // Formato para fechas de entrada
+    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
+    // Formato para fechas de salida
+    private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+
     @Autowired
     private ChecadaRepository checadaRepository;
 
@@ -46,8 +54,35 @@ public class ChecadaServiceImpl implements ChecadaService {
         checadaRepository.deleteById(id);
     }
 
-
     public Page<Checada> getChecadasPaginated(Pageable pageable) {
         return checadaRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Checada> getChecadasByCol1AndDateRange(Integer col1, String startDate, String endDate, Pageable pageable) {
+        try {
+            LocalDateTime inicio = convertToDate(startDate);
+            LocalDateTime fin = convertToDate(endDate);
+
+            // Imprimir las fechas para depuración
+            System.out.println("==================================================================================================");
+            System.out.println("Inicio: " + inicio);
+            System.out.println("Fin: " + fin);
+            System.out.println("==================================================================================================");
+
+            return checadaRepository.findByCol1AndCol2Between(col1, inicio, fin, pageable);
+        } catch (DateTimeParseException e) {
+            // Manejar errores de análisis de fechas
+            throw new RuntimeException("Invalid date format. Start: " + startDate + ", End: " + endDate, e);
+        }
+    }
+
+    // Método para convertir la cadena de fecha a LocalDateTime
+    private LocalDateTime convertToDate(String dateString) {
+        try {
+            return LocalDateTime.parse(dateString, inputFormatter);
+        } catch (DateTimeParseException e) {
+            throw new RuntimeException("Invalid date format: " + dateString, e);
+        }
     }
 }

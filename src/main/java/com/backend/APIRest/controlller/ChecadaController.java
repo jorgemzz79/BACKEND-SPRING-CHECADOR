@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,9 +51,25 @@ public class ChecadaController {
     }
     // Nuevo endpoint para paginación
     @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/paginated")
     public ResponseEntity<Page<Checada>> getChecadasPaginated(Pageable pageable) {
         Page<Checada> checadas = checadaService.getChecadasPaginated(pageable);
         return ResponseEntity.ok(checadas);
     }
+    @CrossOrigin(origins = "http://localhost:4200")
+
+    @GetMapping("/checadas/filter")
+    public ResponseEntity<Page<Checada>> getChecadasByCol1AndDateRange(
+
+            @RequestParam("col1") Integer col1,
+            @RequestParam("startDate") String startDate,
+            @RequestParam("endDate") String endDate,
+            Pageable pageable) {
+
+
+        Page<Checada> checadas = checadaService.getChecadasByCol1AndDateRange(col1, startDate, endDate, pageable);
+        return ResponseEntity.ok(checadas);
+    }
+
 }
