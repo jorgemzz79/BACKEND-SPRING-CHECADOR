@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -61,8 +62,8 @@ public class ChecadaServiceImpl implements ChecadaService {
     @Override
     public Page<Checada> getChecadasByCol1AndDateRange(Integer col1, String startDate, String endDate, Pageable pageable) {
         try {
-            LocalDateTime inicio = convertToDate(startDate);
-            LocalDateTime fin = convertToDate(endDate);
+            LocalDateTime inicio = convertToDate(startDate).atStartOfDay();
+            LocalDateTime fin = convertToDate(endDate).atTime(23, 59, 59);
 
             // Imprimir las fechas para depuración
             System.out.println("==================================================================================================");
@@ -77,10 +78,11 @@ public class ChecadaServiceImpl implements ChecadaService {
         }
     }
 
-    // Método para convertir la cadena de fecha a LocalDateTime
-    private LocalDateTime convertToDate(String dateString) {
+    // Método para convertir la cadena de fecha a LocalDate
+    private LocalDate convertToDate(String dateString) {
         try {
-            return LocalDateTime.parse(dateString, inputFormatter);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            return LocalDate.parse(dateString, formatter);
         } catch (DateTimeParseException e) {
             throw new RuntimeException("Invalid date format: " + dateString, e);
         }
