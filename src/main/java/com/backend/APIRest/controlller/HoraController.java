@@ -20,9 +20,10 @@ public class HoraController {
 
     @Autowired
     private HoraService horaService;
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/subirHoras")
-    public ResponseEntity<Void> subirhoras(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<Void> subirHoras(@RequestParam("file") MultipartFile file) {
         try {
             List<Hora> horas = parseExcelFile(file.getInputStream());
             horaService.saveAll(horas);
@@ -33,13 +34,17 @@ public class HoraController {
     }
 
     private List<Hora> parseExcelFile(InputStream is) throws IOException {
-        List<Hora> Horas = new ArrayList<>();
+        List<Hora> horas = new ArrayList<>();
         Workbook workbook = new XSSFWorkbook(is);
         Sheet sheet = workbook.getSheetAt(0);
 
         for (Row row : sheet) {
             if (row.getRowNum() == 0) {
                 continue; // skip header row
+            }
+
+            if (isRowEmpty(row)) {
+                continue; // skip empty rows
             }
 
             Hora hora = new Hora();
@@ -52,14 +57,12 @@ public class HoraController {
             hora.setViernes(getCellValueAsString(row.getCell(6)));
             hora.setSabado(getCellValueAsString(row.getCell(7)));
             hora.setDomingo(getCellValueAsString(row.getCell(8)));
-            System.out.println("-----------");
-            System.out.println(row.getCell(5));
-            System.out.println("-----------");
-            Horas.add(hora);
+
+            horas.add(hora);
         }
 
         workbook.close();
-        return Horas;
+        return horas;
     }
 
     private String getCellValueAsString(Cell cell) {
@@ -85,4 +88,18 @@ public class HoraController {
         }
     }
 
+    private boolean isRowEmpty(Row row) {
+        if (row == null) {
+            return true;
+        }
+
+        for (int cellNum = 0; cellNum < row.getLastCellNum(); cellNum++) {
+            Cell cell = row.getCell(cellNum);
+            if (cell != null && cell.getCellType() != CellType.BLANK) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
