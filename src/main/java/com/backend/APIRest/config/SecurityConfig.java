@@ -34,6 +34,8 @@ public class SecurityConfig
             "/checadas/",
             "/checadas/paged",
             "/checadas/paged/",
+
+            "/subirHoras",
             "/checadas/**",
             "/api/Pago/",
             "/api/reciboPDF/",
