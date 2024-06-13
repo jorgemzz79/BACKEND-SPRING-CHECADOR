@@ -12,6 +12,7 @@ public class Hora {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String noEmpleado;
+    private String nombreEmpleado;
     private String entradaSalida;
     private String lunes;
     private String martes;
@@ -36,6 +37,14 @@ public class Hora {
 
     public void setNoEmpleado(String noEmpleado) {
         this.noEmpleado = noEmpleado;
+    }
+
+    public String getNombreEmpleado() {
+        return nombreEmpleado;
+    }
+
+    public void setNombreEmpleado(String nombreEmpleado) {
+        this.nombreEmpleado = nombreEmpleado;
     }
 
     public String getEntradaSalida() {

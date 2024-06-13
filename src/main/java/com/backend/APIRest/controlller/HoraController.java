@@ -49,14 +49,15 @@ public class HoraController {
 
             Hora hora = new Hora();
             hora.setNoEmpleado(getCellValueAsString(row.getCell(0)));
-            hora.setEntradaSalida(getCellValueAsString(row.getCell(1)));
-            hora.setLunes(getCellValueAsString(row.getCell(2)));
-            hora.setMartes(getCellValueAsString(row.getCell(3)));
-            hora.setMiercoles(getCellValueAsString(row.getCell(4)));
-            hora.setJueves(getCellValueAsString(row.getCell(5)));
-            hora.setViernes(getCellValueAsString(row.getCell(6)));
-            hora.setSabado(getCellValueAsString(row.getCell(7)));
-            hora.setDomingo(getCellValueAsString(row.getCell(8)));
+            hora.setNombreEmpleado(getCellValueAsString(row.getCell(1)));
+            hora.setEntradaSalida(getCellValueAsString(row.getCell(2)));
+            hora.setLunes(getCellValueAsString(row.getCell(3)));
+            hora.setMartes(getCellValueAsString(row.getCell(4)));
+            hora.setMiercoles(getCellValueAsString(row.getCell(5)));
+            hora.setJueves(getCellValueAsString(row.getCell(6)));
+            hora.setViernes(getCellValueAsString(row.getCell(7)));
+            hora.setSabado(getCellValueAsString(row.getCell(8)));
+            hora.setDomingo(getCellValueAsString(row.getCell(9)));
 
             horas.add(hora);
         }

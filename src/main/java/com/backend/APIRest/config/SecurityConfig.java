@@ -37,6 +37,11 @@ public class SecurityConfig
 
             "/subirHoras",
             "/checadas/**",
+
+            "/subirChecadorXls",
+            "/subirChecadorXls/",
+            "/subirChecadorXls/**",
+
             "/api/Pago/",
             "/api/reciboPDF/",
             "/api/fechaVencimiento/",
