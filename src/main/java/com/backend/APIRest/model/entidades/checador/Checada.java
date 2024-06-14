@@ -19,13 +19,13 @@ public class Checada
         @GeneratedValue(strategy = GenerationType.IDENTITY)
 
         private Integer id;
-        private String col1;
+        private String NoEmpleado;
+        private String NombreEmpleado;
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        private LocalDateTime col2;
-        private String col3;
-        private String col4;
-        private String col5;
-        private String col6;
+        private LocalDateTime FechaHora;
+        private String CodigoTrabajo;
+        private String TipoRegistro;
+
 
         // Getters and Setters
         public Integer getId() {

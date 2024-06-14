@@ -21,6 +21,6 @@ public interface ChecadaService {
     Page<Checada> getChecadasPaginated(Pageable pageable);
     // Método para paginación
 
-    Page<Checada> getChecadasByCol1AndDateRange(Integer col1, String startDate, String endDate, Pageable pageable);
+    Page<Checada> getChecadasByCol1AndDateRange(Integer NoEmpleado, String startDate, String endDate, Pageable pageable);
 
 }

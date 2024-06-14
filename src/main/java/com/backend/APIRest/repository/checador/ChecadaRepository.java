@@ -13,6 +13,7 @@ import java.util.List;
 
 @Repository
 public interface ChecadaRepository extends JpaRepository<Checada, Integer> {
-    @Query("SELECT c FROM Checada c WHERE c.col1 = :col1 AND c.col2 BETWEEN :startDate AND :endDate")
-    Page<Checada> findByCol1AndCol2Between(@Param("col1") Integer col1, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, Pageable pageable);
+    @Query("SELECT c FROM Checada c WHERE c.NoEmpleado = :NoEmpleado AND c.FechaHora BETWEEN :startDate AND :endDate")
+    Page<Checada> findByCol1AndCol2Between(@Param("NoEmpleado") Integer col1, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, Pageable pageable);
 }
+
