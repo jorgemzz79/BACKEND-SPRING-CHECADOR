@@ -2,7 +2,6 @@ package com.backend.APIRest.model.entidades.checador;
 
 import jakarta.persistence.*;
 
-public class Departamento {
     @Entity
     @Table(name = "departamentos")
     public class Departamento {
@@ -21,4 +20,3 @@ public class Departamento {
         // Getters and Setters
     }
 
-}

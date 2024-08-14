@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Repository
 public interface AsistenciaRepository extends JpaRepository<Checada, Integer> {
-    @Query("SELECT c FROM Checada c WHERE c.NoEmpleado = :NoEmpleado AND c.FechaHora BETWEEN :startDate AND :endDate")
-    Page<Checada> findByCol1AndCol2Between(@Param("NoEmpleado") Integer col1, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, Pageable pageable);
+    //@Query("SELECT c FROM Checada c WHERE c.NoEmpleado = :NoEmpleado AND c.FechaHora BETWEEN :startDate AND :endDate")
+    //Page<Checada> findByCol1AndCol2Between(@Param("NoEmpleado") Integer col1, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate, Pageable pageable);
 }
 

@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class AsistenciaServiceImpl implements ChecadaService {
+public class AsistenciaServiceImpl implements AsistenciaService {
     // Formato para fechas de entrada
     private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
     // Formato para fechas de salida

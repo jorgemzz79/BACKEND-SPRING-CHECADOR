@@ -14,16 +14,15 @@ import java.time.LocalDateTime;
 @Setter
 @Builder
 
-@Table(name = "Checadas")
+@Table(name = "checadas")
 
 public class Checada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "perfil_nombre")
+    @JoinColumn(name = "empleado_id")
     private Empleado empleado;
-    private String nombreEmpleado;
     private LocalDateTime fechaHora;
     private String codigoTrabajo;
     private String tipoRegistro;

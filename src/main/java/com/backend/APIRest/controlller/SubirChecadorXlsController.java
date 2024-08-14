@@ -1,6 +1,7 @@
 package com.backend.APIRest.controlller;
 
 import com.backend.APIRest.model.entidades.checador.Checada;
+import com.backend.APIRest.model.entidades.checador.Empleado;
 import com.backend.APIRest.service.xlsChecada.XlsChecadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,8 +58,8 @@ public class SubirChecadorXlsController {
                 }
 
                 Checada checada = new Checada();
-                checada.setNoEmpleado(columns[0].trim());
-                checada.setNombreEmpleado(columns[1].trim());
+                checada.setEmpleado(new Empleado(Integer.valueOf(columns[0].trim())));
+
                 checada.setFechaHora(LocalDateTime.parse(columns[2].trim()));
                 checada.setCodigoTrabajo(columns[3].trim());
                 checada.setTipoRegistro(columns[4].trim());
