@@ -3,6 +3,7 @@ package com.backend.APIRest.controlller;
 import com.backend.APIRest.model.entidades.checador.Checada;
 import com.backend.APIRest.model.entidades.checador.Empleado;
 import com.backend.APIRest.service.checada.ChecadaService;
+import com.backend.APIRest.service.empleado.EmpleadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,12 +28,16 @@ public class ChecadaController {
     @Autowired
     private ChecadaService checadaService;
 
+    @Autowired
+    private EmpleadoService empleadoService;
+
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<List<Checada>> createChecada(@RequestParam("file") MultipartFile file) {
+        System.out.println("INICIANDO ------------------------------->");
         try {
-            List<Checada> checadas = parseTextFile(file);
-            List<Checada> newChecadas = checadaService.saveChecadas(checadas);
+            List<Checada> checadas = parseTextFile(file); System.out.println("PARSE ------------------------------->");
+            List<Checada> newChecadas = checadaService.saveChecadas(checadas);System.out.println("LISTA ------------------------------->");
             return ResponseEntity.ok(newChecadas);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -65,14 +70,21 @@ public class ChecadaController {
                 }
 
                 Checada checada = new Checada();
-                checada.setEmpleado( new Empleado(Integer.valueOf(columns[0].trim()))   );
-                // checada.setEmpleado(Empleado.builder().idEmpleado(Integer.valueOf(columns[0].trim())).build());
-
+                Empleado empleado= empleadoService.obtenerEmpleadoPorId(Integer.valueOf(columns[0].trim()));
+                if(empleado!=null)
+                {
+                checada.setEmpleado( empleado );
                 checada.setFechaHora(LocalDateTime.parse(columns[2].trim(), formatter));
                 checada.setCodigoTrabajo(columns[3].trim());
                 checada.setTipoRegistro(columns[4].trim());
+                    System.out.println("checada ------------------------------->" + checada.getEmpleado().getNombreEmpleado());
 
                 checadas.add(checada);
+                }
+                else{
+                    System.out.println("No se encontro el empleado--->");
+
+                }
             }
         }
 

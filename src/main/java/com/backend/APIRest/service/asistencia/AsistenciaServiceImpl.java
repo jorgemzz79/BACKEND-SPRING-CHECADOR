@@ -72,7 +72,7 @@ public class AsistenciaServiceImpl implements AsistenciaService {
             System.out.println("Fin: " + fin);
             System.out.println("==================================================================================================");
 
-            return checadaRepository.findByCol1AndCol2Between(col1, inicio, fin, pageable);
+            return checadaRepository.findByEmpleadoIdEmpleadoAndFechaHoraBetween(col1, inicio, fin, pageable);
         } catch (DateTimeParseException e) {
             // Manejar errores de análisis de fechas
             throw new RuntimeException("Invalid date format. Start: " + startDate + ", End: " + endDate, e);

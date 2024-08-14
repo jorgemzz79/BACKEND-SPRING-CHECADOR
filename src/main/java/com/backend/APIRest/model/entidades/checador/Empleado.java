@@ -2,6 +2,8 @@ package com.backend.APIRest.model.entidades.checador;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,7 +35,7 @@ public class Empleado
     private String segundoApellido;
 
     @Column(name = "fecha_nacimiento")
-    private String fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @Column(name = "tipo_sangre")
     private String tipoSangre;
