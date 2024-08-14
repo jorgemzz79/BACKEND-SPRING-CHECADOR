@@ -1,53 +1,35 @@
 package com.backend.APIRest.model.entidades.checador;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@Entity
-@Table(name = "checadas")
-public class Checada
-{
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Builder
 
-        private Integer id;
-        private String NoEmpleado;
-        private String NombreEmpleado;
-        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-        private LocalDateTime FechaHora;
-        private String CodigoTrabajo;
-        private String TipoRegistro;
+@Table(name = "Checadas")
 
-
-        // Getters and Setters
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
-
-        /*/
-        ESTE ES PARA TUNEAR EL DATO ANTES DE MANDARLOS A LA BASE DE DATOS, ES DECIR SI EL DATO ESTA EN MINUSCULAS Y LO QUIERO PONER EN MAYUSCULAS
-
-        public String getCol1() {
-            return col1;
-        }
-
-        public void setCol1(String col1) {
-            this.col1 = col1;
-        }
-/*/
+public class Checada {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "perfil_nombre")
+    private Empleado empleado;
+    private String nombreEmpleado;
+    private LocalDateTime fechaHora;
+    private String codigoTrabajo;
+    private String tipoRegistro;
 
 
 
-    }
+
+
+}

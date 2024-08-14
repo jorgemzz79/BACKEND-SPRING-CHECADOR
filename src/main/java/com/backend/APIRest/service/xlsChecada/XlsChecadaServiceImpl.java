@@ -1,7 +1,7 @@
 package com.backend.APIRest.service.xlsChecada;
 
 
-import com.backend.APIRest.model.entidades.checador.XlsChecada;
+import com.backend.APIRest.model.entidades.checador.Checada;
 import com.backend.APIRest.repository.checador.XlsChecadaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class XlsChecadaServiceImpl implements XlsChecadaService {
     private XlsChecadaRepository xlsChecadaRepository;
 
     @Override
-    public List<XlsChecada> saveAll(List<XlsChecada> xlsChecadas) {
-        return xlsChecadaRepository.saveAll(xlsChecadas);
+    public List<Checada> saveAll(List<Checada> checadas) {
+        return xlsChecadaRepository.saveAll(checadas);
     }
 }

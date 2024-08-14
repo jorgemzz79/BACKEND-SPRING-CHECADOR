@@ -1,9 +1,9 @@
 package com.backend.APIRest.service.xlsChecada;
 
-import com.backend.APIRest.model.entidades.checador.XlsChecada;
+import com.backend.APIRest.model.entidades.checador.Checada;
 
 import java.util.List;
 
 public interface XlsChecadaService {
-    List<XlsChecada> saveAll(List<XlsChecada> xlsChecadas);
+    List<Checada> saveAll(List<Checada> checadas);
 }

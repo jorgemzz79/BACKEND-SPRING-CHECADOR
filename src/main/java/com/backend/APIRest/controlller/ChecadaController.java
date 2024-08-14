@@ -1,6 +1,7 @@
 package com.backend.APIRest.controlller;
 
 import com.backend.APIRest.model.entidades.checador.Checada;
+import com.backend.APIRest.model.entidades.checador.Empleado;
 import com.backend.APIRest.service.checada.ChecadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -64,7 +65,8 @@ public class ChecadaController {
                 }
 
                 Checada checada = new Checada();
-                checada.setNoEmpleado(columns[0].trim());
+                checada.setEmpleado( new Empleado(Integer.valueOf(columns[0].trim()))   );
+                // checada.setEmpleado(Empleado.builder().idEmpleado(Integer.valueOf(columns[0].trim())).build());
                 checada.setNombreEmpleado(columns[1].trim());
                 checada.setFechaHora(LocalDateTime.parse(columns[2].trim(), formatter));
                 checada.setCodigoTrabajo(columns[3].trim());

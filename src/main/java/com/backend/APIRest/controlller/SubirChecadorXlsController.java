@@ -1,6 +1,6 @@
 package com.backend.APIRest.controlller;
 
-import com.backend.APIRest.model.entidades.checador.XlsChecada;
+import com.backend.APIRest.model.entidades.checador.Checada;
 import com.backend.APIRest.service.xlsChecada.XlsChecadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +25,16 @@ public class SubirChecadorXlsController {
     @PostMapping("/subirChecadorXls")
     public ResponseEntity<Void> subirChecadorXls(@RequestParam("file") MultipartFile file) {
         try {
-            List<XlsChecada> xlsChecadas = parseTextFile(file);
-            xlsChecadaService.saveAll(xlsChecadas);
+            List<Checada> checadas = parseTextFile(file);
+            xlsChecadaService.saveAll(checadas);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    private List<XlsChecada> parseTextFile(MultipartFile file) throws IOException {
-        List<XlsChecada> xlsChecadas = new ArrayList<>();
+    private List<Checada> parseTextFile(MultipartFile file) throws IOException {
+        List<Checada> checadas = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             String line;
             int lineNumber = 0;
@@ -55,17 +56,17 @@ public class SubirChecadorXlsController {
                     continue;
                 }
 
-                XlsChecada xlsChecada = new XlsChecada();
-                xlsChecada.setNoEmpleado(columns[0].trim());
-                xlsChecada.setNombreEmpleado(columns[1].trim());
-                xlsChecada.setFechaHora(columns[2].trim());
-                xlsChecada.setCodigoTrabajo(columns[3].trim());
-                xlsChecada.setTipoRegistro(columns[4].trim());
+                Checada checada = new Checada();
+                checada.setNoEmpleado(columns[0].trim());
+                checada.setNombreEmpleado(columns[1].trim());
+                checada.setFechaHora(LocalDateTime.parse(columns[2].trim()));
+                checada.setCodigoTrabajo(columns[3].trim());
+                checada.setTipoRegistro(columns[4].trim());
 
-                xlsChecadas.add(xlsChecada);
+                checadas.add(checada);
             }
         }
 
-        return xlsChecadas;
+        return checadas;
     }
 }
