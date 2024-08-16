@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,13 +59,16 @@ public class HoraController {
             if(empleado != null) {
                 hora.setEmpleado(empleado);
                 hora.setEntradaSalida(getCellValueAsString(row.getCell(2)));
-                hora.setLunes(getCellValueAsString(row.getCell(3)));
-                hora.setMartes(getCellValueAsString(row.getCell(4)));
-                hora.setMiercoles(getCellValueAsString(row.getCell(5)));
-                hora.setJueves(getCellValueAsString(row.getCell(6)));
-                hora.setViernes(getCellValueAsString(row.getCell(7)));
-                hora.setSabado(getCellValueAsString(row.getCell(8)));
-                hora.setDomingo(getCellValueAsString(row.getCell(9)));
+
+                DateTimeFormatter formatoTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+                hora.setLunes(LocalTime.parse(getCellValueAsString(row.getCell(3)), formatoTime));
+                hora.setMartes(LocalTime.parse(getCellValueAsString(row.getCell(4)), formatoTime));
+                hora.setMiercoles(LocalTime.parse(getCellValueAsString(row.getCell(5)), formatoTime));
+                hora.setJueves(LocalTime.parse(getCellValueAsString(row.getCell(6)), formatoTime));
+                hora.setViernes(LocalTime.parse(getCellValueAsString(row.getCell(7)), formatoTime));
+                hora.setSabado(LocalTime.parse(getCellValueAsString(row.getCell(8)), formatoTime));
+                hora.setDomingo(LocalTime.parse(getCellValueAsString(row.getCell(9)), formatoTime));
 
                 horas.add(hora);
             }

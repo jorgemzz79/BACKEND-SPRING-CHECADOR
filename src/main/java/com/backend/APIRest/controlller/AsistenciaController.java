@@ -69,8 +69,8 @@ public class AsistenciaController {
                 checada.setEmpleado(new Empleado(Integer.valueOf(columns[0].trim())));
 
                 checada.setFechaHora(LocalDateTime.parse(columns[2].trim(), formatter));
-                checada.setCodigoTrabajo(columns[3].trim());
-                checada.setTipoRegistro(columns[4].trim());
+               // checada.setCodigoTrabajo(columns[3].trim());
+               //  checada.setTipoRegistro(columns[4].trim());
 
                 checadas.add(checada);
             }

@@ -2,16 +2,16 @@ package com.backend.APIRest.model.entidades.checador;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@Entity
+@Builder
 @Table(name = "parametros")
 public class Parametro implements Serializable
 {

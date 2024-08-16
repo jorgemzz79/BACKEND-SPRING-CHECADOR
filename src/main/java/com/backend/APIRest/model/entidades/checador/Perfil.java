@@ -8,12 +8,12 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-@Entity
 @Table(name="perfiles")
 public class Perfil {
     @Id

@@ -75,8 +75,8 @@ public class ChecadaController {
                 {
                 checada.setEmpleado( empleado );
                 checada.setFechaHora(LocalDateTime.parse(columns[2].trim(), formatter));
-                checada.setCodigoTrabajo(columns[3].trim());
-                checada.setTipoRegistro(columns[4].trim());
+              //  checada.setCodigoTrabajo(columns[3].trim());
+              //  checada.setTipoRegistro(columns[4].trim());
                     System.out.println("checada ------------------------------->" + checada.getEmpleado().getNombreEmpleado());
 
                 checadas.add(checada);

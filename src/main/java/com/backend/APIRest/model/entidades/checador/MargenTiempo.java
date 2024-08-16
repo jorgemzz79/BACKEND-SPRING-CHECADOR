@@ -1,9 +1,17 @@
 package com.backend.APIRest.model.entidades.checador;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PositiveOrZero;
+import lombok.*;
+
 import java.time.LocalTime;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 @Table(name = "margentiempo")
 public class MargenTiempo {
 
@@ -12,18 +20,20 @@ public class MargenTiempo {
     @Column(name = "idMargenTiempo")
     private Integer idMargenTiempo;
 
-    @Column(name = "entradaMinutosAntes")
-    private LocalTime entradaMinutosAntes;
+    @Column(name = "entrada_minutos_antes", nullable = false)
+    @PositiveOrZero
+    private Integer entradaMinutosAntes;
 
-    @Column(name = "entradaMinutosDespues")
-    private LocalTime entradaMinutosDespues;
+    @Column(name = "entrada_minutos_despues", nullable = false)
+    @PositiveOrZero
+    private Integer entradaMinutosDespues;
 
-    @Column(name = "salidaMinutosAntes")
-    private LocalTime salidaMinutosAntes;
+    @Column(name = "salida_minutos_antes", nullable = false)
+    @PositiveOrZero
+    private Integer salidaMinutosAntes;
 
-    @Column(name = "salidaMinutosDespues")
-    private LocalTime salidaMinutosDespues;
+    @Column(name = "salida_minutos_despues", nullable = false)
+    @PositiveOrZero
+    private Integer salidaMinutosDespues;
 
-    // Getters and setters
-    // ...
 }
