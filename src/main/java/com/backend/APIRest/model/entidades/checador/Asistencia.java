@@ -17,24 +17,14 @@ public class Asistencia
 {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-
         private Integer id;
-        private String NoEmpleado;
+        @ManyToOne
+        @JoinColumn(name = "empleado_id")
         private String NombreEmpleado;
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime FechaHora;
         private String CodigoTrabajo;
         private String TipoRegistro;
-
-
-        // Getters and Setters
-        public Integer getId() {
-            return id;
-        }
-
-        public void setId(Integer id) {
-            this.id = id;
-        }
 
         /*/
         ESTE ES PARA TUNEAR EL DATO ANTES DE MANDARLOS A LA BASE DE DATOS, ES DECIR SI EL DATO ESTA EN MINUSCULAS Y LO QUIERO PONER EN MAYUSCULAS
