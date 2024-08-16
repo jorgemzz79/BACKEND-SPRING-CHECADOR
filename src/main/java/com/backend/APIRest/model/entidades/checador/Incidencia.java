@@ -45,7 +45,5 @@ public class Incidencia {
     @Size(max = 200)
     @Column(name = "observacion")
     private String observacion;
-
-
 }
 

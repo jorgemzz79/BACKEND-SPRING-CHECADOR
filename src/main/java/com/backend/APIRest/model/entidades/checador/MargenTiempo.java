@@ -14,10 +14,9 @@ import java.time.LocalTime;
 @Builder
 @Table(name = "margentiempo")
 public class MargenTiempo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idMargenTiempo")
+    @Column(name = "id_margen_tiempo")
     private Integer idMargenTiempo;
 
     @Column(name = "entrada_minutos_antes", nullable = false)
@@ -35,5 +34,4 @@ public class MargenTiempo {
     @Column(name = "salida_minutos_despues", nullable = false)
     @PositiveOrZero
     private Integer salidaMinutosDespues;
-
 }

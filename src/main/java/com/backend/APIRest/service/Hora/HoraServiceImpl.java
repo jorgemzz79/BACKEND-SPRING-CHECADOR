@@ -1,6 +1,7 @@
 package com.backend.APIRest.service.Hora;
 
 
+import com.backend.APIRest.model.dto.hora.HorarioDiaDto;
 import com.backend.APIRest.model.entidades.checador.Hora;
 
 import com.backend.APIRest.model.entidades.checador.Hora;
@@ -21,5 +22,14 @@ public class HoraServiceImpl implements HoraService {
     @Override
     public List<Hora> saveAll(List<Hora> horas) {
         return horaRepository.saveAll(horas);
+    }
+
+    @Override
+    public List<HorarioDiaDto> buscarAsistencia(String dia) {
+
+        //meter ciclo
+
+
+        return horaRepository.findHorariosPorDia(dia);
     }
 }

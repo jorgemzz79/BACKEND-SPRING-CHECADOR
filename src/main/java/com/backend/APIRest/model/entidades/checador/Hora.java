@@ -29,6 +29,7 @@ public class Hora {
     @NotNull
     @Size(max = 100)
     @Pattern(regexp = "entrada|salida", message = "Debe ser 'entrada' o 'salida'")
+    @Column(name = "entrada_salida")
     private String entradaSalida;
     private LocalTime lunes;
     private LocalTime martes;
