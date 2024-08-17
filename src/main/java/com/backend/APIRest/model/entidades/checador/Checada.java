@@ -15,10 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-@Table(name = "checadas",
-        uniqueConstraints = {@UniqueConstraint(columnNames = {"empleado_id", "fechaHora"})})
-@SQLInsert(sql = "INSERT INTO checadas (empleado_id, fechaHora) VALUES (?, ?) " +
-        "ON DUPLICATE KEY UPDATE empleado_id = empleado_id")
+@Table(name = "checadas")
 
 public class Checada {
     @Id
