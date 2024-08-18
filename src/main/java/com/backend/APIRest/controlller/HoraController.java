@@ -55,7 +55,7 @@ public class HoraController {
             }
 
             Hora hora = new Hora();
-            Empleado empleado= empleadoService.obtenerEmpleadoPorId(Integer.valueOf(getCellValueAsString(row.getCell(0))));
+            Empleado empleado= empleadoService.getEmpleadoById(Integer.valueOf(getCellValueAsString(row.getCell(0))));
             if(empleado != null) {
                 hora.setEmpleado(empleado);
                 hora.setEntradaSalida(getCellValueAsString(row.getCell(2)));

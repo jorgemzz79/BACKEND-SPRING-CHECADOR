@@ -41,6 +41,7 @@ public class SecurityConfig
             "/subirChecadorXls",
             "/subirChecadorXls/",
             "/subirChecadorXls/**",
+            "/api/empleados/**",
 
             "/api/Pago/",
             "/api/reciboPDF/",

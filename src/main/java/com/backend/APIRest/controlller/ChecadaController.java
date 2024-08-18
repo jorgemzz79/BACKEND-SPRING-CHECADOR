@@ -70,7 +70,8 @@ public class ChecadaController {
                 }
 
                 Checada checada = new Checada();
-                Empleado empleado= empleadoService.obtenerEmpleadoPorId(Integer.valueOf(columns[0].trim()));
+                Empleado empleado= empleadoService.getEmpleadoById(Integer.valueOf(columns[0].trim()));
+                //System.out.println(Integer.valueOf(columns[0].trim()));
                 if(empleado!=null)
                 {
                 checada.setEmpleado( empleado );

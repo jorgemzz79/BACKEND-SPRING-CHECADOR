@@ -75,6 +75,4 @@ public class Empleado
     @Size(max = 100)
     @Column(name = "direccion")
     private String direccion;
-
-
 }
