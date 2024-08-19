@@ -55,5 +55,4 @@ public interface HoraRepository extends JpaRepository<Hora, Integer> {
             "INNER JOIN horas h ON e.id_empleado = h.empleado_id \n" +
             "INNER JOIN margentiempo mt ON 1 = 1 )x", nativeQuery = true)
     List<HorarioDiaDto> findHorariosPorDia(@Param("dia") String dia);
-
 }
