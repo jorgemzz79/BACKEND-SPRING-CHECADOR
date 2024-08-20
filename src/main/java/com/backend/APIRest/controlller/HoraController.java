@@ -1,5 +1,7 @@
 package com.backend.APIRest.controlller;
 
+
+import com.backend.APIRest.model.dto.hora.HorarioDiaDto;
 import com.backend.APIRest.model.entidades.checador.Empleado;
 import com.backend.APIRest.model.entidades.checador.Hora;
 import com.backend.APIRest.service.Hora.HoraService;
@@ -7,6 +9,7 @@ import com.backend.APIRest.service.empleado.EmpleadoService;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +20,11 @@ import java.io.InputStream;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/checadas")
 public class HoraController {
 
     @Autowired
@@ -38,6 +43,20 @@ public class HoraController {
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/buscarAsistencia")
+    public List<HorarioDiaDto> buscarAsistencia(
+            @RequestParam("dia") String dia,
+            @RequestParam("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha) {
+        return horaService.buscarAsistencia(dia, fecha);
+    }
+
+    @GetMapping("/buscarAsistenciaPorRangoFechas")
+    public List<HorarioDiaDto> buscarAsistenciaPorRangoFechas(
+            @RequestParam("fechaInicio") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaInicio,
+            @RequestParam("fechaFin") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fechaFin) {
+        return horaService.buscarAsistenciaPorRangoFechas(fechaInicio, fechaFin);
     }
 
     private List<Hora> parseExcelFile(InputStream is) throws IOException {
