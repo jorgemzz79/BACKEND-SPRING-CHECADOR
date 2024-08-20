@@ -25,8 +25,8 @@ public class HoraServiceImpl implements HoraService {
     }
 
     @Override
-    public List<HorarioDiaDto> buscarAsistencia(String dia) {
-        return horaRepository.findHorariosPorDia(dia);
+    public List<HorarioDiaDto> buscarAsistencia(String dia, Date fecha) {
+        return horaRepository.findHorariosPorDia(dia, fecha);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class HoraServiceImpl implements HoraService {
             int diaSemana = calInicio.get(Calendar.DAY_OF_WEEK);
             String diaNombre = obtenerNombreDia(diaSemana);
 
-            // Llama a la consulta por cada día de la semana
-            List<HorarioDiaDto> resultadoDia = horaRepository.findHorariosPorDia(diaNombre);
+            // Llama a la consulta por cada día de la semana, pasando la fecha correspondiente
+            List<HorarioDiaDto> resultadoDia = horaRepository.findHorariosPorDia(diaNombre, calInicio.getTime());
             resultados.addAll(resultadoDia);
 
             calInicio.add(Calendar.DATE, 1); // Avanza al siguiente día
@@ -59,10 +59,10 @@ public class HoraServiceImpl implements HoraService {
         switch (diaSemana) {
             case Calendar.MONDAY: return "lunes";
             case Calendar.TUESDAY: return "martes";
-            case Calendar.WEDNESDAY: return "miercoles";
+            case Calendar.WEDNESDAY: return "miércoles";
             case Calendar.THURSDAY: return "jueves";
             case Calendar.FRIDAY: return "viernes";
-            case Calendar.SATURDAY: return "sabado";
+            case Calendar.SATURDAY: return "sábado";
             case Calendar.SUNDAY: return "domingo";
             default: return "";
         }
