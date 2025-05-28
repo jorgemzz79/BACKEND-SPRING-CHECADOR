@@ -24,14 +24,12 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/checadas")
 public class ChecadaController {
-
     @Autowired
     private ChecadaService checadaService;
-
     @Autowired
     private EmpleadoService empleadoService;
-
     @CrossOrigin(origins = "http://localhost:4200")
+
     @PostMapping
     public ResponseEntity<List<Checada>> createChecada(@RequestParam("file") MultipartFile file) {
         System.out.println("INICIANDO ------------------------------->");
@@ -116,14 +114,14 @@ public class ChecadaController {
         return ResponseEntity.noContent().build();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/paginated")
     public ResponseEntity<Page<Checada>> getChecadasPaginated(Pageable pageable) {
         Page<Checada> checadas = checadaService.getChecadasPaginated(pageable);
         return ResponseEntity.ok(checadas);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @GetMapping("/checadas/filter")
     public ResponseEntity<Page<Checada>> getChecadasByCol1AndDateRange(
             @RequestParam("NoEmpleado") Integer NoEmpleado,

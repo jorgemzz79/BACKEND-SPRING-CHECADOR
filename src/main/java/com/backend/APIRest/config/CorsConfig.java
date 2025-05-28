@@ -13,7 +13,7 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedOrigin("http://localhost:4200"); // Permite el acceso desde localhost
         configuration.addAllowedOrigin("http://192.168.1.156"); // Permite el acceso desde la IP 192.168.1.100
-        configuration.addAllowedOrigin("http://192.168.1.161"); // Permite el acceso desde la IP 192.168.1.161
+        configuration.addAllowedOrigin("http://192.168.1.160"); // Permite el acceso desde la IP 192.168.1.161
         configuration.addAllowedMethod("*"); // Define los métodos HTTP permitidos (GET, POST, etc.)
         configuration.addAllowedHeader("*"); // Define los encabezados permitidos
 

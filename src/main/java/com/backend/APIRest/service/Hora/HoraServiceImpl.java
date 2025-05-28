@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,7 +28,25 @@ public class HoraServiceImpl implements HoraService {
 
     @Override
     public List<HorarioDiaDto> buscarAsistencia(String dia, Date fecha) {
-        return horaRepository.findHorariosPorDia(dia, fecha);
+        List<Object[]> resultados = horaRepository.findHorariosPorDia(dia, fecha);
+        List<HorarioDiaDto> listaHorarios = new ArrayList<>();
+
+        for (Object[] resultado : resultados) {
+            HorarioDiaDto dto = new HorarioDiaDto();
+            dto.setIdEmpleado((Integer) resultado[0]);
+            dto.setEntradaSalida((String) resultado[1]);
+
+            // Convertir el Object a LocalTime correctamente
+            dto.setHorario(convertToLocalTime(resultado[2]));
+            dto.setDesde(convertToLocalTime(resultado[3]));
+            dto.setHasta(convertToLocalTime(resultado[4]));
+            dto.setPuntual(convertToLocalTime(resultado[5]));
+            dto.setFuera(convertToLocalTime(resultado[6]));
+
+            listaHorarios.add(dto);
+        }
+
+        return listaHorarios;
     }
 
     @Override
@@ -45,7 +65,7 @@ public class HoraServiceImpl implements HoraService {
             String diaNombre = obtenerNombreDia(diaSemana);
 
             // Llama a la consulta por cada día de la semana, pasando la fecha correspondiente
-            List<HorarioDiaDto> resultadoDia = horaRepository.findHorariosPorDia(diaNombre, calInicio.getTime());
+            List<HorarioDiaDto> resultadoDia = buscarAsistencia(diaNombre, calInicio.getTime());
             resultados.addAll(resultadoDia);
 
             calInicio.add(Calendar.DATE, 1); // Avanza al siguiente día
@@ -66,5 +86,19 @@ public class HoraServiceImpl implements HoraService {
             case Calendar.SUNDAY: return "domingo";
             default: return "";
         }
+    }
+
+    // Método para convertir Object a LocalTime
+    private LocalTime convertToLocalTime(Object timeObject) {
+        if (timeObject == null) {
+            return null;
+        }
+        if (timeObject instanceof Time) {
+            return ((Time) timeObject).toLocalTime();
+        }
+        if (timeObject instanceof String) {
+            return LocalTime.parse((String) timeObject);
+        }
+        throw new IllegalArgumentException("Unsupported time object type: " + timeObject.getClass().getName());
     }
 }
